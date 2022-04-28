@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
 
@@ -31,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/background.jpeg"),
+                  image: AssetImage("assets/imges/background.jpeg"),
                   fit: BoxFit.cover),
             ),
           ),
@@ -47,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 80.0,
-                        backgroundImage: AssetImage("assets/aju.png"),
+                        backgroundImage: AssetImage("assets/imges/aju.png"),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 10.0),
