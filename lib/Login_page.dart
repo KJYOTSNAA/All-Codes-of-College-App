@@ -1,11 +1,26 @@
+// ignore_for_file: deprecated_member_use, file_names, sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
+  const Loginpage({Key? key}) : super(key: key);
+
   @override
-  _LoginpageState createState() => _LoginpageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginpageState extends State<Loginpage> {
+class _LoginPageState extends State<Loginpage> {
+  late TextEditingController usernameController, passwordController;
+
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +34,7 @@ class _LoginpageState extends State<Loginpage> {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             size: 20,
             color: Colors.black,
@@ -38,12 +53,12 @@ class _LoginpageState extends State<Loginpage> {
               children: [
                 Column(
                   children: [
-                    Text(
+                    const Text(
                       "LogIn",
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Text(
@@ -53,21 +68,26 @@ class _LoginpageState extends State<Loginpage> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: [
-                      inputFile(lable: "UserName or email"),
-                      inputFile(lable: "Password", obsureText: true)
+                      inputFile(
+                          lable: "UserName or email",
+                          controller: usernameController),
+                      inputFile(
+                          lable: "Password",
+                          obsureText: true,
+                          controller: passwordController)
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Container(
-                    padding: EdgeInsets.only(top: 3, left: 3),
+                    padding: const EdgeInsets.only(top: 3, left: 3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      border: Border(
+                      border: const Border(
                         bottom: BorderSide(color: Colors.black),
                         top: BorderSide(color: Colors.black),
                         left: BorderSide(color: Colors.black),
@@ -77,13 +97,19 @@ class _LoginpageState extends State<Loginpage> {
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
-                      onPressed: () {},
+                      onPressed: () {
+                        if (_validate()) {
+                          //Navigate to dashboard
+                        } else {
+                          //print Error Message Using Toast/Alert Dialog
+                        }
+                      },
                       color: Colors.purple,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      child: Text(
+                      child: const Text(
                         "Login",
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
@@ -95,7 +121,7 @@ class _LoginpageState extends State<Loginpage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text("Don't have account??"),
                     Text(" Sign Up Now",
                         style: TextStyle(
@@ -105,9 +131,9 @@ class _LoginpageState extends State<Loginpage> {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 100),
                   height: 200,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/login.png"),
                       fit: BoxFit.fitHeight,
@@ -121,23 +147,30 @@ class _LoginpageState extends State<Loginpage> {
       ),
     );
   }
+
+  _validate() {
+    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
+      return false;
+    }
+    return true;
+  }
 }
 
-Widget inputFile({lable, obsureText = false}) {
+Widget inputFile({lable, obsureText = false, controller}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
         lable,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
       ),
-      SizedBox(
+      const SizedBox(
         height: 5,
       ),
       TextField(
         obscureText: obsureText,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
@@ -147,7 +180,7 @@ Widget inputFile({lable, obsureText = false}) {
           ),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 10,
       )
     ],
